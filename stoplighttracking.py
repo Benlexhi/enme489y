@@ -5,7 +5,7 @@
 # and saves video of tracking to stoplight.mp4
 
 # import the necessary packages
-from picamera.array import PiRGBArray
+#from picamera.array import PiRGBArray
 from picamera2 import Picamera2
 import numpy as np
 import imutils
