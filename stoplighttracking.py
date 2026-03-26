@@ -19,6 +19,7 @@ colorUpper = (75, 255, 255)
 
 # initialize the Raspberry Pi camera
 camera = PiCamera()
+#camera.resolution = (3280, 2464)
 camera.resolution = (640, 480)
 camera.framerate = 25
 rawCapture = PiRGBArray(camera, size=(640,480))
