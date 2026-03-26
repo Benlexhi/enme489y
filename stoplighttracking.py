@@ -13,7 +13,7 @@ import time
 # define the lower and upper boundaries of the
 # green circle in the HSV color space
 # Note: use colorpicker.py to create a new HSV mask
-colorLower = (29, 70, 6)
+colorLower = (40, 80, 6)
 colorUpper = (75, 255, 255)
 
 # initialize the Raspberry Pi camera with picamera2
