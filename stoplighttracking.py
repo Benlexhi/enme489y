@@ -22,7 +22,8 @@ picam2 = Picamera2()
 
 # Configure camera settings
 config = picam2.create_video_configuration(
-    main={"size": (640, 480), "FrameRate": 25},
+    main={"size": (640, 480)},
+    controls={"FrameRate": 25}
 )
 
 picam2.configure(config)
