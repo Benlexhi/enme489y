@@ -72,16 +72,6 @@ try:
                     cv2.circle(image, (int(x), int(y)), int(radius), (0, 255, 255), 2)
                     cv2.circle(image, center, 2, (0, 0, 255), -1)
 
-                    # Add text when tracking
-                    cv2.putText(image, "GREEN LIGHT DETECTED",
-                                (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
-                                0.6, (0, 255, 0), 2)
-
-        # Add recording indicator
-        cv2.putText(image, "RECORDING",
-                    (10, image.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.5, (0, 0, 255), 1)
-
         # WRITE THE ANNOTATED FRAME TO VIDEO (this captures the circles!)
         out.write(image)
 
