@@ -1,0 +1,6 @@
+#Ignore video files
+*.h264
+*.mp4
+*.avi
+*.mov
+*.mkv
