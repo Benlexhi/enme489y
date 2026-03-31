@@ -8,14 +8,14 @@
 #
 # source ~/.profile
 # workon cv
-# python colorpicker.py -f HSV -i name_of_image_file.jpg
+#python colorpicker.py -f HSV -i testimage_Spring2026_yellow.jpg
 #
 # where name_of_image_file.jpg is the name of the file
 # for which you want to create a HSV mask
 
 
 import cv2
-import argparse
+import argparse #lets you input file to load in the cmd prompt
 import imutils
 from operator import xor
 
