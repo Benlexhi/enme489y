@@ -23,9 +23,9 @@ import numpy as np
 import cv2
 import imutils
 
-print "All packages imported properly!"
-print " ------ "
-print " "
+print ("All packages imported properly!")
+print (" ------ ")
+print (" ")
 
 # Identify webcam & specify resolution (note: native 640 x 480)
 # camera = cv2.VideoCapture(2)
@@ -33,13 +33,14 @@ print " "
 # camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 # Identify filename of video
-camera = cv2.VideoCapture('11July2018/05.avi')
+#camera = cv2.VideoCapture('11July2018/05.avi')
+camera = cv2.VideoCapture('test_video.mp4')
 
 # Initialize arrays for averaging across multiple frames
 x_1 = []; x_2 = []; x_3 = []; x_4 = []; y_1 = []; y_2 = []; y_3 = []; y_4 = []
 
 # Snip/Region-of-Interest dimensions
-aa = 350; bb = 600
+aa = 0; bb = 600
 
 # Grab single frame from video stream
 def grab_frame(camera):
@@ -49,8 +50,10 @@ def grab_frame(camera):
 
 # Snip region of interest in video frame
 def snip_image(img):
-    cv2.rectangle(img, (img.shape[1] / 2 - bb, img.shape[0] - aa), (img.shape[1], img.shape[0] - 0), (0, 255, 0))
-    snip = img[(img.shape[0] - aa):(img.shape[0] - 0), (img.shape[1] / 2 - bb):(img.shape[1] / 2 + bb)]
+    print(img.shape[1] - bb, img.shape[0] - aa)
+    print(img.shape[1], img.shape[0] - 0)
+    cv2.rectangle(img, (img.shape[1] - bb, img.shape[0] - aa), (img.shape[1], img.shape[0] - 0), (0, 255, 0))
+    snip = img[(img.shape[0] - aa):(img.shape[0] - 0), (img.shape[1] - bb):(img.shape[1] + bb)]
     return snip
 
 # Create & apply polygon (trapezoid) mask to selected region of interest
@@ -148,7 +151,7 @@ def plot_final_lines(img, x1, y1, x2, y2, x3, y3, x4, y4):
     return overlay
 
 def main():
-    print "Here we go!"
+    print ("Here we go!")
 
     # Initialize frame & averaging counters
     counter = 0; z = 0; zz = 0
@@ -242,7 +245,7 @@ def main():
             if cv2.waitKey(25) & 0xFF == ord('q'):
                 break
 
-    print "Thanks for playing!"
+    print ("Thanks for playing!")
 
 if __name__ == '__main__':
 	main()
