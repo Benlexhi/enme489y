@@ -8,7 +8,7 @@ import argparse
 import cv2
 import imutils
 
-print "All packages imported properly!"
+print ("All packages imported properly!")
 
 # Identify filename of video
 cap = cv2.VideoCapture('lanedetectiontestvideo.mp4')
@@ -33,7 +33,7 @@ zz = 0
 # Loop through until entire video file is played
 while(cap.isOpened()):
 
-    print counter
+    print (counter)
     counter = counter + 1
 
     # Read video frame & show on screen
