@@ -46,7 +46,7 @@ try:
         image = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
         # Rotate image 90 degrees clockwise
-        image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
+        #image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
 
         # flip image (depending on mechanical setup)
         image = cv2.flip(image, -1)
