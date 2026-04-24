@@ -34,7 +34,7 @@ picam2.set_controls({
 picam2.start()
 
 # allow the camera to warm up with new settings
-time.sleep(2)  # Slightly longer to let manual settings stabilize
+time.sleep(3)  # Slightly longer to let manual settings stabilize
 
 # Main video loop
 try:
