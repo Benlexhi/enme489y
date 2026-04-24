@@ -30,7 +30,7 @@ try:
         # Grab a frame from the camera
         # capture_array() returns RGB by default, but OpenCV uses BGR
         # You can also use capture_array("bgr") to get BGR directly
-        frame = picam2.capture_array("bgr")
+        frame = picam2.capture_array("main")
 
         # Make a copy for display (so we don't modify the original if we need it)
         image = frame.copy()
