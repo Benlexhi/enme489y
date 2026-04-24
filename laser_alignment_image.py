@@ -35,6 +35,9 @@ try:
         # Make a copy for display (so we don't modify the original if we need it)
         image = frame.copy()
 
+        # Convert RBG to BGR for correct colors in OpenCV
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
         # flip image (depending on mechanical setup)
         image = cv2.flip(image, -1)
 
