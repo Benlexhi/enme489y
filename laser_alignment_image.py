@@ -1,46 +1,63 @@
 # ENME489Y: Remote Sensing
 
 # import the necessary packages
-from picamera.array import PiRGBArray
-from picamera import PiCamera
+from picamera2 import Picamera2
 import numpy as np
 import time
 import cv2
 import imutils
 
-# initialize the camera and grab a reference to the raw camera capture
-camera = PiCamera()
-camera.resolution = (1280,720)
-camera.framerate = 25
-rawCapture = PiRGBArray(camera, size=(1280,720))
+# initialize the camera
+picam2 = Picamera2()
 
-# allow the camera to setup
+# Configure camera resolution and framerate
+config = picam2.create_video_configuration(
+    main={"size": (1280, 720)},
+    controls={"FrameRate": 25}
+)
+picam2.configure(config)
+
+# Start the camera
+picam2.start()
+
+# allow the camera to warm up
 time.sleep(1)
 
-# grab an image from the camera
-for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=False):
+# Main video loop - Picamera2 doesn't have capture_continuous,
+# so we use a while loop and manually capture each frame
+try:
+    while True:
+        # Grab a frame from the camera
+        # capture_array() returns RGB by default, but OpenCV uses BGR
+        # You can also use capture_array("bgr") to get BGR directly
+        frame = picam2.capture_array("bgr")
 
-	image = frame.array
-	# may need to flip image, depending on mechanical setup of instrument
-	image = cv2.flip(image,-1)
+        # Make a copy for display (so we don't modify the original if we need it)
+        image = frame.copy()
 
-	# plot crosshairs, for alignment
-	cv2.line(image, (640,0), (640,720), (0,150,150), 1)
-	cv2.line(image, (0,360), (1280,360), (0,150,150), 1)
-	# plot green vertical lines, for alignment
-	for i in range(50, 1300, 50):
-		cv2.line(image, (i,0), (i, 720), (0,150,0), 3)
+        # flip image (depending on mechanical setup)
+        image = cv2.flip(image, -1)
 
-	# display the image on screen and wait for a keypress
-	cv2.imshow("Image", image)
-	key = cv2.waitKey(1) & 0xFF
+        # plot crosshairs for alignment
+        cv2.line(image, (640, 0), (640, 720), (0, 150, 150), 1)
+        cv2.line(image, (0, 360), (1280, 360), (0, 150, 150), 1)
 
-	rawCapture.truncate(0)
+        # plot green vertical lines for alignment
+        for i in range(50, 1300, 50):
+            cv2.line(image, (i, 0), (i, 720), (0, 150, 0), 3)
 
-	# break out of video loop when specified by the user
-	if key == ord("q"):
-		break
+        # display the image on screen
+        cv2.imshow("Image", image)
+        key = cv2.waitKey(1) & 0xFF
 
+        # break out of video loop when 'q' is pressed
+        if key == ord("q"):
+            break
 
+except KeyboardInterrupt:
+    # Handle Ctrl+C gracefully
+    pass
 
-
+# Cleanup
+cv2.destroyAllWindows()
+picam2.stop()
