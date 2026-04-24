@@ -1,4 +1,5 @@
 #Ignore video files
+measurements/
 *.h264
 *.mp4
 *.avi
