@@ -48,7 +48,7 @@ def get_trackbar_values(range_filter):
 def main():
     range_filter = 'hsv'
 
-    image = cv2.imread("measurements/120inches.jpg")
+    image = cv2.imread("measurements/36inches.jpg")
     image = imutils.resize(image, width=600)
 
     frame_to_thresh = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
