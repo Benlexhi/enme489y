@@ -136,7 +136,7 @@ plt.axis([0, 640, 0, 120])
 plt.grid(True, alpha=0.3)
 
 # Add parameters as text box instead of in legend
-textstr = f'rpc = {rpc:.8f} rad/pixel\nro = {ro:.6f} rad\nH = {H:.2f} m'
+textstr = f'rpc = {rpc:.8f} rad/pixel\nro = {ro:.6f} rad\nH = {H:.2f} in'
 plt.gca().text(0.05, 0.95, textstr, transform=plt.gca().transAxes,
                fontsize=10, verticalalignment='top',
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
