@@ -18,7 +18,7 @@ import cv2
 import imutils
 from operator import xor
 
-print "All packages installed properly!"
+print ("All packages installed properly!")
 
 
 def callback(value):
@@ -48,7 +48,7 @@ def get_trackbar_values(range_filter):
 def main():
     range_filter = 'hsv'
 
-    image = cv2.imread("20190219.jpg")
+    image = cv2.imread("measurements/120inches.jpg")
     image = imutils.resize(image, width=600)
 
     frame_to_thresh = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)

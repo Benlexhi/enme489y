@@ -22,11 +22,11 @@ picam2.start()
 time.sleep(1)
 
 # Measurement settings
-start_distance = 0  # inches
+start_distance = 36  # inches
 end_distance = 120  # inches (10 feet)
 increment = 6  # inches
 distances = list(range(start_distance, end_distance + 1, increment))
-# distances = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96, 102, 108, 114, 120]
+# distances = [36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96, 102, 108, 114, 120]
 
 current_index = 0
 total_measurements = len(distances)
