@@ -50,4 +50,6 @@ for i in range(scans):
 
     os.rename(filename, '/home/bserrano/ENME435/test_scans/' + filename)  # replaces os.system mv
 
-    print("All done!")
+    print("Scan saved")
+
+print("All done!")
