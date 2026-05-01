@@ -42,6 +42,7 @@ d = int(d)
 filename = "%d.jpg" % d
 cv2.imwrite(filename, image)
 
+os.makedirs('/home/bserrano/ENME435/test_scans', exist_ok=True)
 os.rename(filename, '/home/bserrano/ENME435/test_scans' + filename)  # replaces os.system mv
 
 print("All done!")
