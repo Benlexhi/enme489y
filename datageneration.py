@@ -13,13 +13,13 @@ import matplotlib
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-print "All packages imported properly!"
+print ("All packages imported properly!")
 
 # define the lower and upper boundaries of the
 # red laser line in the HSV color space
 # Note: may need to use colorpicker.py to create a new HSV mask
-colorLower = (164, 114, 26)
-colorUpper = (255, 255, 255)
+colorLower = (163, 97, 42)
+colorUpper = (172, 255, 255)
 
 # initialize plot arrays
 x_plot = []
@@ -33,11 +33,11 @@ pcZ = []
 
 # lidar parameters
 # these should be copied/tuned based on your lidar setup
-ro = -0.0019
-rpc = 0.00008
+ro = -0.00195
+rpc = 0.00005
 
-# 12 inch separation distance, laser to camera, in meters
-H = 0.3048
+# 12.2 inch separation distance, laser to camera, in meters
+H = 0.30988
 
 # Raspberry Pi camera field of view
 # 12 inch ruler fills width of camera at 17 inch range
@@ -50,12 +50,12 @@ for i in range(0, 720):
     ang[i] = 0.000942479485*(i-360)
 # print ang
 
-files = glob.glob('testdataraymond/*.jpg')      # finds all the pathnames matching a specified pattern
-print files
+files = glob.glob(r"C:\Users\Brian\PycharmProjects\enme489y\test_scans\*.jpg")      # finds all the pathnames matching a specified pattern
+print (files)
 
 # Write (angle,x,y) coordinates of laser spot to file
 # for post-processing
-f = open('testdataraymond/testresults.txt', 'a')
+f = open(r'C:\Users\Brian\PycharmProjects\enme489y\test_scans\testresults.txt', 'a')
 # now = datetime.datetime.now()
 # timestamp = now.strftime("%Y/%m/%d %H:%M")
 
@@ -63,13 +63,13 @@ f = open('testdataraymond/testresults.txt', 'a')
 millis = int(round(time.time() * 1000))
 
 for x in files:  # x is the filename
-    print x
+    print (x)
 
     # Pull pointing angle from each filename
     # Ensure all filenames have POSITIVE angle values (0-359 deg)
-    angle = re.findall('\\d+', x)
-    angle = map(int, angle)
-    print angle
+    angle = int(re.findall(r'\d+', x)[-1])
+    #angle = list(map(int, angle))
+    print (angle)
 
     # Read in image
     image = cv2.imread(x)
@@ -126,7 +126,9 @@ for x in files:  # x is the filename
             pcZ.append(D*np.sin(np.deg2rad(angle)))
 
             # Writes (x, y, z) coordinates of each 3D point to file
-            outstring = str(D*np.sin(ang[a])*np.cos(np.deg2rad(angle))).strip("[]") + " " + str(D*np.cos(np.deg2rad(angle))).strip("[]") + " " + str(D*np.sin(np.deg2rad(angle))).strip("[]") + "\n"
+            outstring = str(float(D * np.sin(ang[a]) * np.cos(np.deg2rad(angle)))) + " " + \
+                        str(float(D * np.cos(np.deg2rad(angle)))) + " " + \
+                        str(float(D * np.sin(np.deg2rad(angle)))) + "\n"
             f.write(outstring)
 
         else:
@@ -148,9 +150,10 @@ f.close()
 
 # uncomment to examine time required to process each frame
 millis_1 = int(round(time.time() * 1000))
-print " "
-print "Time required to process all data:"
-print millis_1 - millis
+print (" ")
+print ("Time required to process all data:")
+print (millis_1 - millis)
+
 
 # Plot data in 3D point cloud scatter plot
 fig = plt.figure(1)
@@ -164,8 +167,8 @@ plt.xlim(-40, 40)
 plt.ylim(20, 100)
 plt.show()
 
-print " "
-print "finished...bye bye!"
+print (" ")
+print ("finished...bye bye!")
 
 
 
