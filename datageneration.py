@@ -18,8 +18,12 @@ print ("All packages imported properly!")
 # define the lower and upper boundaries of the
 # red laser line in the HSV color space
 # Note: may need to use colorpicker.py to create a new HSV mask
-colorLower = (163, 97, 42)
-colorUpper = (172, 255, 255)
+colorLower = (0, 97, 49) #49
+colorUpper = (189, 255, 255) #193
+
+#39
+#0 97 54
+#189 255 255
 
 # initialize plot arrays
 x_plot = []
@@ -50,12 +54,12 @@ for i in range(0, 720):
     ang[i] = 0.000942479485*(i-360)
 # print ang
 
-files = glob.glob(r"C:\Users\Brian\PycharmProjects\enme489y\test_scans\*.jpg")      # finds all the pathnames matching a specified pattern
+files = glob.glob(r"C:\Users\benle\PycharmProjects\ENME435\enme489y\Back_Left\*.jpg")      # finds all the pathnames matching a specified pattern
 print (files)
 
 # Write (angle,x,y) coordinates of laser spot to file
 # for post-processing
-f = open(r'C:\Users\Brian\PycharmProjects\enme489y\test_scans\testresults.txt', 'a')
+f = open(r"C:\Users\benle\PycharmProjects\ENME435\enme489y\Back_Left\testresults.txt", 'a')
 # now = datetime.datetime.now()
 # timestamp = now.strftime("%Y/%m/%d %H:%M")
 
@@ -126,6 +130,10 @@ for x in files:  # x is the filename
             pcZ.append(D*np.sin(np.deg2rad(angle)))
 
             # Writes (x, y, z) coordinates of each 3D point to file
+            #X is left/right distance from the center pixel to the point of the laser being examined
+            #Y is horizontal distance to the laser
+            #Z is the vertical distance to the laser height
+
             outstring = str(float(D * np.sin(ang[a]) * np.cos(np.deg2rad(angle)))) + " " + \
                         str(float(D * np.cos(np.deg2rad(angle)))) + " " + \
                         str(float(D * np.sin(np.deg2rad(angle)))) + "\n"

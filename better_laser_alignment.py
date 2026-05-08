@@ -29,7 +29,7 @@ print(f"Found {len(files)} images: {files}")
 
 # define the lower and upper boundaries of the
 # red line in the HSV color space
-colorLower = (163, 97, 42)
+colorLower = (163, 97, 16) #42
 colorUpper = (193, 255, 255)
 
 # initialize plot arrays
